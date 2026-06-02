@@ -1,0 +1,12 @@
+.DS_Store
+
+# Backend local runtime files
+backend/.env
+backend/data/
+
+# Frontend generated files
+frontend/node_modules/
+frontend/dist/
+
+# Local previews
+frontend-preview.png
