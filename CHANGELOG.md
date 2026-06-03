@@ -9,3 +9,15 @@
 - 后端自动规范化 OpenAI-compatible base URL，允许环境变量填写服务根地址。
 - 增加 base URL 规范化单元测试。
 - 修复前端在列表接口返回空值或异常中间态时的 Vue 渲染报错，并保证发送按钮状态总能恢复。
+
+## 2026-06-03
+
+- 修复：SQLite 外键约束未启用，`FOREIGN KEY` 和 `ON DELETE CASCADE` 不生效。
+  - `backend/internal/store/store.go` 中 `Open()` 在连接建立后执行 `PRAGMA foreign_keys = ON`。
+- 修复：前端发送消息时输入框过早清空，API 失败后用户丢失输入内容。
+  - `frontend/src/App.vue` `submitMessage()` 的 `draft.value = ""` 移至 `guard` 回调内（API 成功后才清空）。
+- 修复：前端刷新按钮（`loadPatients`）仅在当前病人消失时才重载数据，未更新当前病人的病历和聊天记录。
+  - `frontend/src/App.vue` `loadPatients()` 在当前病人仍存在时也主动调用 `loadPatientData()`。
+- 新增 `docs/REQUIREMENTS.md` 需求文档，覆盖功能需求、非功能需求、数据模型。
+- 同步更新 `docs/API.md`，补全外键约束说明。
+- 同步更新 `README.md`，项目结构包含需求文档入口，修改规范加入 REQUIREMENTS.md。

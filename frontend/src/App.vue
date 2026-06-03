@@ -192,6 +192,9 @@ async function loadPatients() {
       selectedPatientId.value = patients.value[0].id
       await loadPatientData()
     }
+    if (selectedPatientId.value && patients.value.some(p => p.id === selectedPatientId.value)) {
+      await loadPatientData()
+    }
   })
 }
 
@@ -236,13 +239,13 @@ async function addRecord() {
 async function submitMessage() {
   if (!selectedPatientId.value || !draft.value.trim() || sending.value) return
   const content = draft.value.trim()
-  draft.value = ''
   sending.value = true
   try {
     await guard(async () => {
       const response = await sendMessage(selectedPatientId.value, content)
       messages.value = [...safeArray(messages.value), response.user, response.assistant].filter(Boolean)
       await scrollMessages()
+      draft.value = ""
     })
   } finally {
     sending.value = false

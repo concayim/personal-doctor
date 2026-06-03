@@ -114,6 +114,14 @@
 
 `recordedAt` 可省略，后端会使用当前时间。
 
+> 注意：`patientId` 必须对应一个已存在的病人。后端启用了 SQLite 外键约束，
+> 如果传入不存在的 patientId，请求会返回 400 错误：
+> 
+> ```json
+> {
+>   "error": "constraint failed: FOREIGN KEY constraint failed (787)"
+> }
+> ```
 响应：返回创建后的病历对象。
 
 ## 聊天

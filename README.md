@@ -20,7 +20,9 @@
 .
 ├── backend/          # Go API、SQLite、Eino 模型调用
 ├── frontend/         # Vue 3 工作台
-├── docs/API.md       # REST API 文档
+├── docs/             # 文档
+│   ├── API.md        # REST API 文档
+│   └── REQUIREMENTS.md  # 需求文档
 └── CHANGELOG.md      # 修改记录
 ```
 
@@ -72,9 +74,10 @@ OPENAI_MODEL=gpt-4o-mini
 
 当前 `.gitignore` 已忽略 `backend/.env` 和 `backend/data/`，避免本地密钥和病历数据库被误提交。
 
-## 接口文档
+## 文档
 
-REST API 见 [docs/API.md](docs/API.md)。
+- REST API 说明见 [docs/API.md](docs/API.md)
+- 功能需求与非功能需求见 [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md)
 
 ## 修改规范
 
@@ -83,5 +86,6 @@ REST API 见 [docs/API.md](docs/API.md)。
 - [CHANGELOG.md](CHANGELOG.md)
 - [README.md](README.md)，如果启动、配置或功能发生变化
 - [docs/API.md](docs/API.md)，如果接口发生变化
+- [docs/REQUIREMENTS.md](docs/REQUIREMENTS.md)，如果需求发生变化
 
 敏感信息只能保存在后端环境配置中，不能暴露到前端包、接口文档或示例配置。
