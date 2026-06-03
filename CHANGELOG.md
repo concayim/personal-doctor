@@ -21,3 +21,10 @@
 - 新增 `docs/REQUIREMENTS.md` 需求文档，覆盖功能需求、非功能需求、数据模型。
 - 同步更新 `docs/API.md`，补全外键约束说明。
 - 同步更新 `README.md`，项目结构包含需求文档入口，修改规范加入 REQUIREMENTS.md。
+
+## 2026-06-03
+
+- 修复：前端 502 Bad Gateway 错误。
+  - 根因：`backend/.env` 中 `LLM_PROVIDER=openai` 指向本地 OrbStack 代理（`:8317`），Eino 调用模型时该端点未正常响应，导致聊天接口无限挂起，前端请求超时返回 502。
+  - 修复：临时切换至 `LLM_PROVIDER=mock`，后端使用本地占位回复，聊天接口瞬时返回。
+  - 后续：配置好本地模型代理后可恢复 `LLM_PROVIDER=openai`。
